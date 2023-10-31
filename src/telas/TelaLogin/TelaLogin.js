@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { auth, db } from '../../firebase/config.js'
+import { firebase, auth, db } from '../../firebase/config.js'
 import styles from './estilo';
 
 export default function LoginScreen({navigation}) {
@@ -16,8 +16,8 @@ export default function LoginScreen({navigation}) {
         auth
             .signInWithEmailAndPassword(email, password)
             .then((response) => {
-                const uid = response.user.uid
-                const usersRef = firebase.db
+                // const uid = response.user.uid
+                // const usersRef = firebase.db
                 // usersRef
                 //     .doc(uid)
                 //     .get()
@@ -27,15 +27,15 @@ export default function LoginScreen({navigation}) {
                 //             return;
                 //         }
                 //         const user = firestoreDocument.data()
-                        navigation.navigate('Principal')
+                        navigation.navigate('Lancamento')
                 //     })
                 //     .catch(error => {
                 //         alert(error)
                 //     });
             })
-            // .catch(error => {
-            //     alert(error)
-            // })
+            .catch(error => {
+                alert(error);
+            })
     }
 
     return (
@@ -72,7 +72,7 @@ export default function LoginScreen({navigation}) {
                     <Text style={styles.buttonTitle}>Log in</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+                    <Text style={styles.footerText}>Não possui um Login? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Crie uma conta</Text></Text>
                 </View>
             </KeyboardAwareScrollView>
         </View>

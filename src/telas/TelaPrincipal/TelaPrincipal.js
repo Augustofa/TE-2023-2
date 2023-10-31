@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { auth } from '../../firebase/config.js'
+import { firebase, auth } from '../../firebase/config.js'
 import styles from './estilo'
 
 export default function HomeScreen({navigation}) {

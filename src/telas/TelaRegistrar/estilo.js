@@ -38,6 +38,10 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold"
     },
+    passWarning: {
+        color: 'gray',
+        fontSize: 12
+    },
     footerView: {
         flex: 1,
         alignItems: "center",
