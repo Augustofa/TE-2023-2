@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     },
     logo: {
         height: 120,
-        width: 90,
+        width: 120,
         alignSelf: 'center',
         margin: 30
     },

@@ -17,6 +17,10 @@ export default function HomeScreen({navigation}) {
         navigation.navigate('Lancamento')
     }
 
+    const onViewEntriesPress = () => {
+        navigation.navigate('VerLancamentos')
+    }
+
     return (
         <View style={styles.container}>
             <KeyboardAwareScrollView
@@ -24,7 +28,7 @@ export default function HomeScreen({navigation}) {
                 keyboardShouldPersistTaps='never'>
                 <Image
                     style={styles.logo}
-                    source={require('../../../assets/icon.png')}
+                    source={require('../../../assets/transaction-64.png')}
                 />
                 <TouchableOpacity
                     style={styles.button}
@@ -40,6 +44,13 @@ export default function HomeScreen({navigation}) {
                     <TouchableOpacity
                         style={styles.buttonEntries}
                         onPress={() => onEntriesPress()}>
+                        <Text style={styles.buttonTitle}>Novo Lançamento (botão temporário)</Text>
+                    </TouchableOpacity>
+                </View>
+                <View>
+                    <TouchableOpacity
+                        style={styles.buttonEntries}
+                        onPress={() => onViewEntriesPress()}>
                         <Text style={styles.buttonTitle}>Lançamentos (botão temporário)</Text>
                     </TouchableOpacity>
                 </View>

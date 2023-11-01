@@ -1,12 +1,13 @@
 import { db } from "../../firebase/config.js";
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View, TextInput, Text, TouchableOpacity, Modal } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TextInputMask } from "react-native-masked-text";
 import styles from "./estilo";
 import { ModalPicker } from "./Modal/ModalPicker";
 
-export default function CadastroLancamentos() {
+export default function CadastroLancamentos({navigation}) {
   const [data, setData] = useState("");
   const [valor, setValor] = useState("");
   const [descricao, setDescricao] = useState("");
@@ -22,10 +23,10 @@ export default function CadastroLancamentos() {
   const handleCadastro = () => {
     db.ref("lancamentos") // Especifica o nó onde os dados serão salvos
       .push({
-        Data: data,
-        Valor: valor,
-        Tipo: tipo,
-        Descrição: descricao,
+        data: data,
+        valor: valor,
+        tipo: tipo,
+        descricao: descricao,
       })
       .then(() => {
         console.log(
@@ -36,6 +37,7 @@ export default function CadastroLancamentos() {
           descricao
         );
         alert("Lançamento cadastrado com sucesso");
+        navigation.navigate('VerLancamentos');
       })
       .catch((error) => {
         console.error("Erro ao cadastrar lançamento:", error);
@@ -46,6 +48,11 @@ export default function CadastroLancamentos() {
   const onSavePress = () => {
     handleCadastro();
   };
+
+  const onCancelPress = () => {
+    navigation.navigate('VerLancamentos');
+  };
+
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
@@ -103,10 +110,10 @@ export default function CadastroLancamentos() {
           value={descricao}
           onChangeText={setDescricao}
         />
-        <TouchableOpacity style={styles.button} onPress={() => onSavePress()}>
+        <TouchableOpacity style={styles.button} onPress={onSavePress}>
           <Text style={styles.buttonTitle}>Salvar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => onCancelPress()}>
+        <TouchableOpacity style={styles.button} onPress={onCancelPress}>
           <Text style={styles.buttonTitle}>Cancelar</Text>
         </TouchableOpacity>
       </KeyboardAwareScrollView>

@@ -45,7 +45,7 @@ export default function LoginScreen({navigation}) {
                 keyboardShouldPersistTaps="never">
                 <Image
                     style={styles.logo}
-                    source={require('../../../assets/icon.png')}
+                    source={require('../../../assets/transaction-64.png')}
                 />
                 <TextInput
                     style={styles.input}
@@ -60,7 +60,7 @@ export default function LoginScreen({navigation}) {
                     style={styles.input}
                     placeholderTextColor="#aaaaaa"
                     secureTextEntry
-                    placeholder='Password'
+                    placeholder='Senha'
                     onChangeText={(text) => setPassword(text)}
                     value={password}
                     underlineColorAndroid="transparent"
