@@ -38,7 +38,7 @@ export default function HomeScreen({navigation}) {
                     style={styles.logo}
                     source={require('../../../assets/transaction-64.png')}
                 />
-                {auth.currentUser ? (
+                { user ? (
                     <Text></Text> 
                 ) : (
                     <><TouchableOpacity
