@@ -1,19 +1,41 @@
-import React, { useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { firebase, auth, db } from '../../firebase/config'
+import emailjs from "@emailjs/browser"
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/compat/auth"
 import styles from './estilo';
 
 export default function RegistrationScreen({navigation}) {
-    const [fullName, setFullName] = useState('')
+    const [cpf, setCpf] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordLength, setPasswordLength] = useState('12')
+
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => emailjs.init("kthqolNvK52RnfZ1k"), []);
   
     useEffect(() => {
         generateRandomPassword();
     }, []);
+
+    async function sendEmail() {
+        const serviceId = "service_4y6tkek";
+        const templateId = "template_ai2aqgh";
+        try {
+            setLoading(true);
+            await emailjs.send(serviceId, templateId, {
+                message: password,
+                to_email: email,
+            });
+            console.log("Email enviado com sucesso");
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     // Gera senha aleatoria de 12 digitos
     const generateRandomPassword = () => {
@@ -36,36 +58,19 @@ export default function RegistrationScreen({navigation}) {
         auth.
         createUserWithEmailAndPassword(email, password)
             .then((response) => {
+                sendEmail();
+
                 const uid = response.user.uid
-                const data = {
+                const dados = {
                     id: uid,
-                    email,
-                    fullName,
+                    email: email,
+                    cpf: cpf,
                 };
 
-                var actionCodeSettings = {
-                    url: password,
-                    iOS: {
-                      bundleId: password
-                    },
-                    android: {
-                      packageName: password,
-                      installApp: true,
-                      minimumVersion: '12'
-                    },
-                    handleCodeInApp: true
-                };
-                auth.sendSignInLinkToEmail(email, actionCodeSettings);
-                const usersRef = db.ref()
-                // usersRef
-                //     .doc(uid)
-                //     .set(data)
-                //     .then(() => {
-                //         navigation.navigate('Principal', {user: data})
-                //     })
-                //     .catch((error) => {
-                //         alert(error)
-                //     });
+                const usersRef = db.ref('usuarios')
+                const newUserKey = usersRef.push().key;
+
+                usersRef.child(newUserKey).set(dados);
                 
                 Alert.alert("Conta criada com sucesso!", "Sua senha foi enviada ao email: " + email);
                 navigation.navigate('Login');
@@ -88,8 +93,8 @@ export default function RegistrationScreen({navigation}) {
                     style={styles.input}
                     placeholder='CPF'
                     placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setFullName(text)}
-                    value={fullName}
+                    onChangeText={(text) => setCpf(text)}
+                    value={cpf}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />

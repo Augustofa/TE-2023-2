@@ -1,41 +1,51 @@
 import React, { useState } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { firebase, auth, db } from '../../firebase/config.js'
+import { auth, db } from '../../firebase/config.js'
 import styles from './estilo';
 
 export default function LoginScreen({navigation}) {
-    const [email, setEmail] = useState('')
+    const [cpf, setCpf] = useState('')
     const [password, setPassword] = useState('')
+
+    const findUserByCpf = async () => {
+        try{
+            const snapshot = await db.ref('usuarios').once('value');
+            const users = snapshot.val();
+
+            const user = Object.values(users).find((user) => (user.cpf == cpf));
+
+            if(user){
+                console.log("Usuário encontrado: " + user.email);
+                return user.email;
+            }else{
+                console.log("Usuário não encontrado");
+                return null;
+            }
+        }catch(error){
+            console.error("Erro na busca de usuário" + error);
+        }
+    }
 
     const onFooterLinkPress = () => {
         navigation.navigate('Registrar')
     }
 
-    const onLoginPress = () => {
-        auth
-            .signInWithEmailAndPassword(email, password)
+    const onLoginPress = async () => {
+        const userEmail = await findUserByCpf();
+        if(userEmail != null){
+            auth
+            .signInWithEmailAndPassword(userEmail, password)
             .then((response) => {
-                // const uid = response.user.uid
-                // const usersRef = firebase.db
-                // usersRef
-                //     .doc(uid)
-                //     .get()
-                //     .then(firestoreDocument => {
-                //         if (!firestoreDocument.exists) {
-                //             alert("User does not exist anymore.")
-                //             return;
-                //         }
-                //         const user = firestoreDocument.data()
-                        navigation.navigate('Lancamento')
-                //     })
-                //     .catch(error => {
-                //         alert(error)
-                //     });
+                navigation.navigate('Principal');
             })
             .catch(error => {
                 alert(error);
             })
+        }else{
+            alert("Usuário não encontrado!");
+        }
+        
     }
 
     return (
@@ -49,10 +59,10 @@ export default function LoginScreen({navigation}) {
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder='E-mail'
+                    placeholder='CPF'
                     placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setEmail(text)}
-                    value={email}
+                    onChangeText={(text) => setCpf(text)}
+                    value={cpf}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />

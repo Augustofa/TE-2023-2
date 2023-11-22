@@ -1,32 +1,14 @@
-import { db } from "../../firebase/config.js";
+import { db, auth } from "../../firebase/config.js";
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  TextInput,
-  Text,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { TextInputMask } from "react-native-masked-text";
 import styles from "./estilo.js";
 
-export default function CadastroLancamentos() {
-  const [data, setData] = useState("");
-  const [valor, setValor] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [tipo, setchooseTipo] = useState("Selecione um tipo ...");
+export default function VerLancamentos() {
   const [dados, setDados] = useState([]);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const changeModalVisibility = (bool) => {
-    setIsModalVisible(bool);
-  };
-
-  const setTipo = (option) => {
-    setchooseTipo(option);
-  };
 
   useEffect(() => {
+    console.log(auth.currentUser.uid)
     const data = db.ref("lancamentos");
     data.on("value", (datasnap) => {
       let data = [];
@@ -38,10 +20,6 @@ export default function CadastroLancamentos() {
       setDados(data);
     });
   }, []);
-
-  const onSavePress = () => {
-    handleCadastro();
-  };
   
   return (
     <FlatList
