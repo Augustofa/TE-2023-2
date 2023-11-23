@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { TelaLogin, TelaRegistrar, TelaPrincipal, TelaLancamento, TelaVerLancamentos } from './src/telas'
+import { TelaLogin, TelaRegistrar, TelaTrocaSenha, TelaPrincipal, TelaLancamento, TelaVerLancamentos } from './src/telas'
 import { decode, encode } from 'base-64'
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
@@ -19,13 +19,14 @@ export default function App() {
       <Stack.Navigator>
         { user ? (
             // <Stack.Screen name="Principal" component={TelaPrincipal} />
-          {/* Tela recebe usuario logado: TODO {props => <TelaPrincipal {...props} extraData={user} />} */}
+          {/* OPT: Tela recebe usuario logado {props => <TelaPrincipal {...props} extraData={user} />} */}
           // </Stack.Screen>?
           ) : (
           <>
             <Stack.Screen name="Principal" component={TelaPrincipal} />
             <Stack.Screen name="Login" component={TelaLogin} />
             <Stack.Screen name="Registrar" component={TelaRegistrar} />
+            <Stack.Screen name="TrocaSenha" component={TelaTrocaSenha} />
             <Stack.Screen name="Lancamento" component={TelaLancamento} />
             <Stack.Screen name="VerLancamentos" component={TelaVerLancamentos} />
           </>

@@ -19,4 +19,4 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.database("https://te-2023-2-default-rtdb.firebaseio.com");
 const auth = firebase.auth();
 
-export { auth, db };
+export { firebase, auth, db };
