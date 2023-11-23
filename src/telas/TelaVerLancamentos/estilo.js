@@ -3,56 +3,36 @@ import { StyleSheet } from "react-native"
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        paddingTop: 80,
+        marginTop: 14,
+        marginBottom: 24,
+        marginLeft: 24,
+        marginRight: 24,
+        borderBottomWidth: 0.5,
+        borderBottomColor: "gray"
     },
-    input: {
-        height: 48,
-        width: '85%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
+    content: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: 2,
+        marginBottom: 8
     },
-    labelInput: {
-        marginTop: 10,
-        marginLeft: 30
+    data: {
+        color: "gray",
+        fontWeight: "bold"
     },
-    button: {
-        backgroundColor: '#788eec',
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 20,
-        height: 48,
-        borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center'
+    descricao: {
+        fontWeight: "bold",
+        fontSize: 16
     },
-    buttonTitle: {
-        color: 'white',
+    despesa: {
+        fontWeight: "bold",
         fontSize: 16,
-        fontWeight: 'bold'
+        color: "red"
     },
-    comboBox: {
-        height: 48,
-        width: '85%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16,
-        paddingTop: 15
-    },
-    listItem: {
-        borderBottomColor: 'gray', 
-        borderBottomWidth: 1
+    receita: {
+        fontWeight: "bold",
+        fontSize: 16,
+        color: "green"
     }
 });
 

@@ -50,7 +50,7 @@ export default function CadastroLancamentos({navigation}) {
   };
 
   const onCancelPress = () => {
-    navigation.navigate('VerLancamentos');
+    navigation.navigate('Principal');
   };
 
   return (
