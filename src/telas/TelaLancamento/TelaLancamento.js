@@ -78,7 +78,6 @@ export default function CadastroLancamentos({navigation}) {
           options={{
             precision: 2,
             separator: ",",
-            delimiter: ".",
             unit: "R$",
           }}
           keyboardType="numeric"
