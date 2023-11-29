@@ -8,7 +8,6 @@ export default function VerLancamentos() {
   const [dados, setDados] = useState([]);
 
   useEffect(() => {
-    console.log(auth.currentUser.uid)
     const data = db.ref("lancamentos");
     data.on("value", (datasnap) => {
       let data = [];
