@@ -200,7 +200,6 @@ export default function CadastroLancamentos({route, navigation}) {
           options={{
             precision: 2,
             separator: ",",
-            delimiter: ".",
             unit: "R$",
           }}
           keyboardType="numeric"
