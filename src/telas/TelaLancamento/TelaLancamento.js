@@ -1,23 +1,130 @@
 import { db } from "../../firebase/config.js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, TextInput, Text, TouchableOpacity, Modal } from "react-native";
+import { View, TextInput, Text, TouchableOpacity, Modal, Alert } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TextInputMask } from "react-native-masked-text";
 import styles from "./estilo";
 import { ModalPicker } from "./Modal/ModalPicker";
 
-export default function CadastroLancamentos({navigation}) {
+export default function CadastroLancamentos({route, navigation}) {
   const [data, setData] = useState("");
   const [valor, setValor] = useState("");
   const [descricao, setDescricao] = useState("");
   const [tipo, setchooseTipo] = useState("Selecione um tipo ...");
+  const [isExistente, setIsExistente] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const changeModalVisibility = (bool) => {
     setIsModalVisible(bool);
   };
   const setTipo = (option) => {
     setchooseTipo(option);
+  };
+
+  const { params } = route;
+
+  useEffect(() => {
+    if(params !== undefined && params.item !== undefined){
+      const item = params.item
+      setIsExistente(true)
+      setData(item.data)
+      setValor(item.valor)
+      setDescricao(item.descricao)
+      setTipo(item.tipo)
+    }
+  }, [params]);
+
+  const deleteNode = async (deletedItem) => {
+    try {
+      const nodeRef = db.ref('lancamentos');
+  
+      const query = nodeRef
+        .orderByChild('data')
+        .equalTo(deletedItem.data)
+
+        const snapshot = await query.once('value');
+        let deletedNode = undefined;
+
+        snapshot.forEach((childSnapshot) => {
+          const node = childSnapshot.val();
+
+          if(node.data === deletedItem.data &&
+            node.valor === deletedItem.valor &&
+            node.tipo === deletedItem.tipo &&
+            node.descricao === deletedItem.descricao
+          ){
+            deletedNode = childSnapshot.key
+          }
+        })
+
+      if (deletedNode !== undefined) {
+        Alert.alert(
+          'Confirmar deleção',
+          'Tem certeza que deseja excluir esse registro?',
+          [
+            {
+              text: 'Cancelar',
+              style: 'cancel',
+            },
+            {
+              text: 'Deletar',
+              onPress: async () => {
+                snapshot.forEach((childSnapshot) => {
+                  const key = childSnapshot.key;
+                  nodeRef.child(key).remove();
+                });
+  
+                Alert.alert('Lancamento deletado com sucesso!')
+                console.log('Lancamento deletado com sucesso!');
+                navigation.navigate('VerLancamentos');
+              },
+            },
+          ],
+          { cancelable: false }
+        );
+      }
+    } catch (error) {
+      console.error('Erro ao deletar lancamento!', error);
+    }
+  };
+
+  const modifyNode = async (newItem) => {
+    const oldItem = params.item
+    try {
+      const nodeRef = db.ref('lancamentos');
+  
+      const query = nodeRef
+        .orderByChild('data')
+        .equalTo(oldItem.data)
+
+        const snapshot = await query.once('value');
+        let oldNode = undefined;
+
+        snapshot.forEach((childSnapshot) => {
+          const node = childSnapshot.val();
+
+          if(node.data === oldItem.data &&
+            node.valor === oldItem.valor &&
+            node.tipo === oldItem.tipo &&
+            node.descricao === oldItem.descricao
+          ){
+            oldNode = childSnapshot.key
+          }
+        })
+
+      if (oldNode !== undefined) {
+        snapshot.forEach((childSnapshot) => {
+          const key = childSnapshot.key;
+          nodeRef.child(key).set(newItem);
+        });
+
+        Alert.alert('Lancamento modificado com sucesso!')
+        console.log('Lancamento modificado com sucesso!');
+        navigation.navigate('VerLancamentos');
+      }
+    } catch (error) {
+      console.error('Erro ao modificar lancamento!', error);
+    }
   };
 
   const handleCadastro = () => {
@@ -49,6 +156,20 @@ export default function CadastroLancamentos({navigation}) {
     handleCadastro();
   };
 
+  const onModifyPress = () => {
+    const novosDados = {
+      data: data,
+      valor: valor,
+      tipo: tipo,
+      descricao: descricao,
+    }
+    modifyNode(novosDados)
+  }
+
+  const onDeletePress = () => {
+    deleteNode(params.item)
+  }
+
   const onCancelPress = () => {
     navigation.navigate('Principal');
   };
@@ -61,16 +182,17 @@ export default function CadastroLancamentos({navigation}) {
       >
         <Text style={styles.labelInput}>Data</Text>
         <TextInputMask
-          style={styles.input}
-          type={"datetime"}
-          options={{
-            format: "DD/MM/YYYY",
-          }}
-          keyboardType="numeric"
-          placeholder="DD/MM/YYYY"
-          value={data}
-          onChangeText={setData}
+        style={styles.input}
+        type={"datetime"}
+        options={{
+          format: "DD/MM/YYYY",
+        }}
+        keyboardType="numeric"
+        placeholder="DD/MM/YYYY"
+        value={data}
+        onChangeText={setData}
         />
+        
         <Text style={styles.labelInput}>Valor</Text>
         <TextInputMask
           style={styles.input}
@@ -110,9 +232,22 @@ export default function CadastroLancamentos({navigation}) {
           value={descricao}
           onChangeText={setDescricao}
         />
-        <TouchableOpacity style={styles.button} onPress={onSavePress}>
-          <Text style={styles.buttonTitle}>Salvar</Text>
-        </TouchableOpacity>
+
+        
+        {isExistente ? (
+          <View>
+            <TouchableOpacity style={styles.button} onPress={onModifyPress}>
+              <Text style={styles.buttonTitle}>Alterar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonDelete} onPress={onDeletePress}>
+              <Text style={styles.buttonTitle}>Apagar Registro</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <TouchableOpacity style={styles.button} onPress={onSavePress}>
+            <Text style={styles.buttonTitle}>Salvar</Text>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity style={styles.button} onPress={onCancelPress}>
           <Text style={styles.buttonTitle}>Cancelar</Text>
         </TouchableOpacity>

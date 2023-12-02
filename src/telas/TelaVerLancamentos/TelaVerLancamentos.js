@@ -4,8 +4,12 @@ import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./estilo.js";
 
-export default function VerLancamentos() {
+export default function VerLancamentos({navigation}) {
   const [dados, setDados] = useState([]);
+
+  const detalhesLancamento = (item) => {
+    navigation.navigate('Lancamento', { item });
+  };
 
   useEffect(() => {
     const data = db.ref("lancamentos");
@@ -26,8 +30,7 @@ export default function VerLancamentos() {
       data={dados}
       showsVerticalScrollIndicator={false}
       renderItem={({item}) => (
-        
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() => detalhesLancamento(item)}>
           <Text style={styles.data}>{item.data}</Text>
 
           <View style={styles.content}>
