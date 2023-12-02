@@ -1,15 +1,15 @@
-import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo, Feather } from '@expo/vector-icons';
 import BotaoLancamento from './componentes/BotaoLancamento/BotaoLancamento';
 
-import TelaPrincipal from './telas/TelaPrincipal/TelaPrincipal';
-import TelaLancamento from './telas/TelaLancamento/TelaLancamento';
-import TelaVerLancamentos from './telas/TelaVerLancamentos/TelaVerLancamentos';
+import { TelaInicial, TelaLogin, TelaRegistrar, TelaTrocaSenha, TelaPrincipal, TelaLancamento, TelaVerLancamentos } from './telas';
 
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export default function Routes() {
+function Tabs() {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -26,6 +26,7 @@ export default function Routes() {
                 name="Principal" 
                 component={TelaPrincipal}
                 options={{
+                    headerShown: false,
                     tabBarIcon: ({ size, color }) => (
                         <Entypo name="home" size={size} color={color} />
                     )
@@ -35,6 +36,7 @@ export default function Routes() {
                 name="Lancamento" 
                 component={TelaLancamento}
                 options={{
+                    // headerShown: false,
                     tabBarLabel: '',
                     tabBarIcon: ({ size, color }) => (
                         <BotaoLancamento size={size} color={color}/>
@@ -45,6 +47,7 @@ export default function Routes() {
                 name="VerLancamento" 
                 component={TelaVerLancamentos}
                 options={{
+                    // headerShown: false,
                     tabBarIcon: ({ size, color }) => (
                         <Entypo name="list" size={size} color={color} />
                     )
@@ -53,3 +56,40 @@ export default function Routes() {
         </Tab.Navigator>
     );
 }
+
+const Routes = () => (
+    <NavigationContainer>
+        <Stack.Navigator initialRouteName='TelaInicial'>
+            <Stack.Screen
+                name="TelaInicial"
+                component={TelaInicial}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Login"
+                component={TelaLogin}
+                options={{
+                    title: ""
+                }}
+            />
+            <Stack.Screen
+                name="Registrar"
+                component={TelaRegistrar}
+                options={{
+                    title: ""
+                }}
+            />
+            <Stack.Screen
+                name="Principal"
+                component={Tabs}
+                options={{
+                    headerShown: false
+                }}
+            />
+        </Stack.Navigator>
+    </NavigationContainer>
+);
+
+export default Routes;

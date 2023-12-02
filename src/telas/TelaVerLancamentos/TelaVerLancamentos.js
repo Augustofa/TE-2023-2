@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./estilo.js";
+import Header from '../../componentes/Header/Header';
 
 export default function VerLancamentos() {
   const [dados, setDados] = useState([]);

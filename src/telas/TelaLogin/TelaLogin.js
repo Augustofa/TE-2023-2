@@ -45,7 +45,6 @@ export default function LoginScreen({navigation}) {
         }else{
             alert("Usuário não encontrado!");
         }
-        
     }
 
     return (
@@ -86,5 +85,5 @@ export default function LoginScreen({navigation}) {
                 </View>
             </KeyboardAwareScrollView>
         </View>
-    )
+    );
 }

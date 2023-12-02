@@ -7,16 +7,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 100,
     },
-    content: {
-
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginLeft: 14,
-        marginRight: 14,
-        marginTop: 14
-    },
     userMenu: {
         position: 'absolute',
         top: 10, // Adjust this value to set the distance from the top
@@ -25,37 +15,37 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
     },
-    // logo: {
-    //     height: 120,
-    //     width: 120,
-    //     alignSelf: 'center',
-    //     margin: 30
-    // },
-    // button: {
-    //     backgroundColor: '#788eec',
-    //     marginLeft: 30,
-    //     marginRight: 30,
-    //     marginTop: 20,
-    //     height: 48,
-    //     borderRadius: 5,
-    //     alignItems: 'center',
-    //     justifyContent: 'center'
-    // },
-    // buttonTitle: {
-    //     color: 'white',
-    //     fontSize: 16,
-    //     fontWeight: 'bold'
-    // },
-    // buttonEntries: {
-    //     backgroundColor: 'red',
-    //     marginLeft: 30,
-    //     marginRight: 30,
-    //     marginTop: 20,
-    //     height: 48,
-    //     borderRadius: 5,
-    //     alignItems: 'center',
-    //     justifyContent: 'center'
-    // },
+    logo: {
+        height: 120,
+        width: 120,
+        alignSelf: 'center',
+        margin: 30
+    },
+    button: {
+        backgroundColor: '#788eec',
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+        height: 48,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    buttonTitle: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    buttonEntries: {
+        backgroundColor: 'red',
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+        height: 48,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     // Modal style
     modalPosition: {
         position: 'absolute',
