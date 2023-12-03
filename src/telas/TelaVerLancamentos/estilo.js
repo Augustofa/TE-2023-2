@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         marginTop: 2,
-        marginBottom: 8
+        marginBottom: 8,
+        width: '100%'
     },
     data: {
         color: "gray",

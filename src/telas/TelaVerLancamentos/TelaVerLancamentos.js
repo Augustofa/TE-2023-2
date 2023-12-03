@@ -34,7 +34,9 @@ export default function VerLancamentos({navigation}) {
           <Text style={styles.data}>{item.data}</Text>
 
           <View style={styles.content}>
-            <Text style={styles.descricao}>{item.descricao}</Text>
+            <Text style={styles.descricao}>
+              {typeof item.descricao === 'string' ? item.descricao.substring(0, 25) : ''}
+            </Text>
             <Text 
               style={item.tipo === "Despesa" ? styles.despesa : styles.receita}
             >

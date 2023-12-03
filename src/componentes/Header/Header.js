@@ -43,7 +43,7 @@ export default function Header() {
         <View style={styles.container}>
             <View style={styles.content}>
                 { user ? (
-                    <Text style={styles.userName}>{ user.email }</Text>
+                    <Text style={styles.userName}>Olá, { user.email.split('@')[0] }!</Text>
 
                 ) : (
                     <Text style={styles.userName}>Usuário não logado</Text>
