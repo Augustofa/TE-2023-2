@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     userName: {
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: "bold",
         color: "white"
     },

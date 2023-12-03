@@ -4,10 +4,10 @@
     "slug": "TE-2023-2",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_fundo_branco.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/transaction-64.png",
+      "image": "./assets/logo_fundo_branco.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo_fundo_branco.png",
         "backgroundColor": "#ffffff"
       }
     },

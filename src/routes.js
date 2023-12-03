@@ -1,5 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, HeaderBackButton } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo, Feather } from '@expo/vector-icons';
 import BotaoLancamento from './componentes/BotaoLancamento/BotaoLancamento';
@@ -23,7 +23,7 @@ function Tabs() {
             }}
         >
             <Tab.Screen 
-                name="Principal" 
+                name="Home" 
                 component={TelaPrincipal}
                 options={{
                     headerShown: false,
@@ -35,8 +35,8 @@ function Tabs() {
             <Tab.Screen 
                 name="Lancamento" 
                 component={TelaLancamento}
-                options={{
-                    // headerShown: false,
+                options={{ 
+                    tabBarStyle: { display: 'none'},
                     tabBarLabel: '',
                     tabBarIcon: ({ size, color }) => (
                         <BotaoLancamento size={size} color={color}/>
@@ -47,7 +47,7 @@ function Tabs() {
                 name="VerLancamento" 
                 component={TelaVerLancamentos}
                 options={{
-                    // headerShown: false,
+                    // tabBarStyle: { display: 'none'},
                     tabBarIcon: ({ size, color }) => (
                         <Entypo name="list" size={size} color={color} />
                     )
@@ -59,7 +59,14 @@ function Tabs() {
 
 const Routes = () => (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='TelaInicial'>
+        <Stack.Navigator 
+            initialRouteName='TelaInicial'
+            screenOptions={{
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: '#1FA15F' },
+                headerShadowVisible: false
+            }}
+        >
             <Stack.Screen
                 name="TelaInicial"
                 component={TelaInicial}
@@ -87,6 +94,10 @@ const Routes = () => (
                 options={{
                     headerShown: false
                 }}
+            />
+            <Stack.Screen
+                name="Lancamento"
+                component={Tabs}
             />
         </Stack.Navigator>
     </NavigationContainer>

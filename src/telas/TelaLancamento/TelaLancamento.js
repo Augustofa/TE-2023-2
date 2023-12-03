@@ -1,6 +1,5 @@
 import { db } from "../../firebase/config.js";
 import React, { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { View, TextInput, Text, TouchableOpacity, Modal, Alert } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TextInputMask } from "react-native-masked-text";
@@ -171,7 +170,7 @@ export default function CadastroLancamentos({route, navigation}) {
   }
 
   const onCancelPress = () => {
-    navigation.navigate('Principal');
+    navigation.navigate('Home');
   };
 
   return (

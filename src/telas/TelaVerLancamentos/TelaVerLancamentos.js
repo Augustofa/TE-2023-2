@@ -1,10 +1,9 @@
 import { db, auth } from "../../firebase/config.js";
 import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./estilo.js";
 
-export default function VerLancamentos({navigation}) {
+export default function VerLancamentos({ navigation, limit }) {
   const [dados, setDados] = useState([]);
 
   const detalhesLancamento = (item) => {
@@ -20,7 +19,7 @@ export default function VerLancamentos({navigation}) {
         val["$key"] = childsnap.key;
         data.push(val);
       });
-      setDados(data);
+      setDados(data.slice(-limit));
     });
   }, []);
   

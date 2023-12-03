@@ -12,7 +12,7 @@ export default function HomeScreen({ navigation }) {
 
             <View style={styles.content}>
                 <Text style={styles.title}>Últimos lançamentos</Text>
-                <TelaVerLancamentos/>
+                <TelaVerLancamentos navigation={navigation} limit={3}/>
             </View>
         </View>
         </>
