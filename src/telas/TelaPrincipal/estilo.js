@@ -6,16 +6,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 100,
+        backgroundColor: '#1FA15F'
     },
     content: {
-
+        backgroundColor: '#FFF',
+        borderRadius: 20
     },
     title: {
         fontSize: 18,
         fontWeight: 'bold',
         marginLeft: 14,
         marginRight: 14,
-        marginTop: 14
+        marginTop: 24,
+        marginBottom: 24
     },
     userMenu: {
         position: 'absolute',
@@ -25,37 +28,6 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
     },
-    // logo: {
-    //     height: 120,
-    //     width: 120,
-    //     alignSelf: 'center',
-    //     margin: 30
-    // },
-    // button: {
-    //     backgroundColor: '#788eec',
-    //     marginLeft: 30,
-    //     marginRight: 30,
-    //     marginTop: 20,
-    //     height: 48,
-    //     borderRadius: 5,
-    //     alignItems: 'center',
-    //     justifyContent: 'center'
-    // },
-    // buttonTitle: {
-    //     color: 'white',
-    //     fontSize: 16,
-    //     fontWeight: 'bold'
-    // },
-    // buttonEntries: {
-    //     backgroundColor: 'red',
-    //     marginLeft: 30,
-    //     marginRight: 30,
-    //     marginTop: 20,
-    //     height: 48,
-    //     borderRadius: 5,
-    //     alignItems: 'center',
-    //     justifyContent: 'center'
-    // },
     // Modal style
     modalPosition: {
         position: 'absolute',

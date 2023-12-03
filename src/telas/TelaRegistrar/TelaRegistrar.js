@@ -87,7 +87,7 @@ export default function RegistrationScreen({navigation}) {
                 keyboardShouldPersistTaps="never">
                 <Image
                     style={styles.logo}
-                    source={require('../../../assets/transaction-64.png')}
+                    source={require('../../../assets/logo.png')}
                 />
                 <TextInput
                     style={styles.input}

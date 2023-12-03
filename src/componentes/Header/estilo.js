@@ -4,7 +4,7 @@ const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 :
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "blue",
+        backgroundColor: "#1FA15F",
         padding: statusBarHeight,
         flexDirection: "row",
         paddingStart: 16,

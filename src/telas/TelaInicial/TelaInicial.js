@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View, Modal, Pressable, Alert } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './estilo'
 
@@ -20,17 +20,17 @@ export default function TelaInicial({ navigation }) {
 
                 <Image
                     style={styles.logo}
-                    source={require('../../../assets/transaction-64.png')} 
+                    source={require('../../../assets/background_tela_inicial.png')} 
                 />
                 
                 <TouchableOpacity
-                    style={styles.button}
+                    style={styles.buttonRegister}
                     onPress={() => onRegisterPress()}>
                     <Text style={styles.buttonTitle}>Criar minha conta</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={styles.button}
+                    style={styles.buttonLogin}
                     onPress={() => onLoginPress()}>
                     <Text style={styles.buttonTitle}>Já tenho conta</Text>
                 </TouchableOpacity>
