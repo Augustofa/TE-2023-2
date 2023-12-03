@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#1FA15F'
+        backgroundColor: '#1B7E4C',
+        paddingTop: 20
     },
     input: {
         height: 48,
@@ -20,7 +21,8 @@ const styles = StyleSheet.create({
     },
     labelInput: {
         marginTop: 10,
-        marginLeft: 30
+        marginLeft: 30,
+        color: '#FFF'
     },
     buttonSave: {
         backgroundColor: '#EFA106',

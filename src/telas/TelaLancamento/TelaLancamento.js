@@ -1,6 +1,6 @@
 import { db } from "../../firebase/config.js";
 import React, { useState, useEffect } from "react";
-import { View, TextInput, Text, TouchableOpacity, Modal, Alert } from "react-native";
+import { View, TextInput, Text, TouchableOpacity, Modal, Alert, Button } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TextInputMask } from "react-native-masked-text";
 import styles from "./estilo";

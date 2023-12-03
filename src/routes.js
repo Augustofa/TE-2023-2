@@ -1,15 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator, HeaderBackButton } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo, Feather } from '@expo/vector-icons';
 import BotaoLancamento from './componentes/BotaoLancamento/BotaoLancamento';
+import { HeaderBackButton } from "@react-navigation/elements";
 
 import { TelaInicial, TelaLogin, TelaRegistrar, TelaTrocaSenha, TelaPrincipal, TelaLancamento, TelaVerLancamentos } from './telas';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function Tabs() {
+function Tabs({ navigation }) {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -35,7 +36,21 @@ function Tabs() {
             <Tab.Screen 
                 name="Lancamento" 
                 component={TelaLancamento}
-                options={{ 
+                options={{
+                    title: "",
+                    headerStyle: { backgroundColor: '#1B7E4C' },
+                    headerShadowVisible: false,
+                    headerTintColor: 'white',
+                    headerLeft: () => (
+                        <HeaderBackButton
+                            label=' '
+                            style={{
+                                marginLeft: 20
+                            }}
+                            tintColor='#FFF'
+                            onPress={() => navigation.navigate('Home')}
+                        />
+                    ),
                     tabBarStyle: { display: 'none'},
                     tabBarLabel: '',
                     tabBarIcon: ({ size, color }) => (
@@ -47,6 +62,20 @@ function Tabs() {
                 name="VerLancamento" 
                 component={TelaVerLancamentos}
                 options={{
+                    title: "",
+                    headerStyle: { backgroundColor: '#1B7E4C' },
+                    headerShadowVisible: false,
+                    headerLeft: () => (
+                        <HeaderBackButton
+                            label=' '
+                            style={{
+                                marginLeft: 10
+                            }}
+                            tintColor='#FFF'
+                            onPress={() => navigation.navigate('Home')}
+                        />
+                    ),
+                    headerTintColor: 'white',
                     tabBarStyle: { display: 'none'},
                     tabBarIcon: ({ size, color }) => (
                         <Entypo name="list" size={size} color={color} />
@@ -97,11 +126,11 @@ const Routes = () => (
             />
             <Stack.Screen
                 name="Lancamento"
-                component={Tabs}
+                component={TelaLancamento}
             />
             <Stack.Screen
                 name="VerLancamentos"
-                component={Tabs}
+                component={TelaVerLancamentos}
             />
         </Stack.Navigator>
     </NavigationContainer>
