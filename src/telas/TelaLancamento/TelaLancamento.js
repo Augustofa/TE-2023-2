@@ -75,7 +75,7 @@ export default function CadastroLancamentos({route, navigation}) {
   
                 Alert.alert('Lancamento deletado com sucesso!')
                 console.log('Lancamento deletado com sucesso!');
-                navigation.navigate('VerLancamentos');
+                navigation.navigate('Home');
               },
             },
           ],
@@ -119,7 +119,7 @@ export default function CadastroLancamentos({route, navigation}) {
 
         Alert.alert('Lancamento modificado com sucesso!')
         console.log('Lancamento modificado com sucesso!');
-        navigation.navigate('VerLancamentos');
+        navigation.navigate('Home');
       }
     } catch (error) {
       console.error('Erro ao modificar lancamento!', error);
@@ -143,7 +143,7 @@ export default function CadastroLancamentos({route, navigation}) {
           descricao
         );
         alert("Lançamento cadastrado com sucesso");
-        navigation.navigate('VerLancamentos');
+        navigation.navigate('Home');
       })
       .catch((error) => {
         console.error("Erro ao cadastrar lançamento:", error);

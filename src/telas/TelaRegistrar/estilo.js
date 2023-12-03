@@ -5,17 +5,15 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 100,
-        backgroundColor: '#1FA15F'
+        backgroundColor: '#1B7E4C'
     },
     logo: {
         flex: 1,
-        height: 120,
-        width: 120,
+        height: 300,
+        width: 300,
         alignSelf: "center",
         marginLeft: 30,
-        marginRight: 30,
-        marginBottom: 30
+        marginRight: 30
     },
     input: {
         height: 48,

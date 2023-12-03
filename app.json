@@ -4,12 +4,12 @@
     "slug": "TE-2023-2",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo_fundo_branco.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logo_fundo_branco.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1B7E4C"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,8 +19,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo_fundo_branco.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#1B7E4C"
       }
     },
     "web": {

@@ -47,7 +47,7 @@ function Tabs() {
                 name="VerLancamento" 
                 component={TelaVerLancamentos}
                 options={{
-                    // tabBarStyle: { display: 'none'},
+                    tabBarStyle: { display: 'none'},
                     tabBarIcon: ({ size, color }) => (
                         <Entypo name="list" size={size} color={color} />
                     )
@@ -63,7 +63,7 @@ const Routes = () => (
             initialRouteName='TelaInicial'
             screenOptions={{
                 headerTintColor: 'white',
-                headerStyle: { backgroundColor: '#1FA15F' },
+                headerStyle: { backgroundColor: '#1B7E4C' },
                 headerShadowVisible: false
             }}
         >
@@ -97,6 +97,10 @@ const Routes = () => (
             />
             <Stack.Screen
                 name="Lancamento"
+                component={Tabs}
+            />
+            <Stack.Screen
+                name="VerLancamentos"
                 component={Tabs}
             />
         </Stack.Navigator>

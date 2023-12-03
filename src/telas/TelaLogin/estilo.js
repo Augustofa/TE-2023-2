@@ -4,15 +4,13 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: 100,
-        backgroundColor: '#1FA15F'
+        backgroundColor: '#1B7E4C'
     },
     logo: {
         flex: 1,
-        height: 120,
-        width: 120,
-        alignSelf: "center",
-        margin: 30
+        height: 300,
+        width: 300,
+        alignSelf: "center"
     },
     input: {
         height: 48,
