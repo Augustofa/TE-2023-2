@@ -81,6 +81,15 @@ const styles = StyleSheet.create({
         marginRight: 30,
         paddingLeft: 16,
         paddingTop: 15
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: 'white',
+        marginLeft: 14,
+        marginRight: 14,
+        marginTop: 24,
+        marginBottom: 24
     }
 });
 

@@ -175,6 +175,7 @@ export default function CadastroLancamentos({route, navigation}) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Cadastrar Lançamento</Text>
       <KeyboardAwareScrollView
         style={{ flex: 1, width: "100%" }}
         keyboardShouldPersistTaps="never"

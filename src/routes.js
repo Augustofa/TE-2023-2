@@ -59,11 +59,11 @@ function Tabs({ navigation }) {
                 }}
             />
             <Tab.Screen 
-                name="VerLancamento" 
+                name="Extrato" 
                 component={TelaVerLancamentos}
                 options={{
-                    title: "",
                     headerStyle: { backgroundColor: '#1B7E4C' },
+                    headerTitle: "Visualização de Lançamentos",
                     headerShadowVisible: false,
                     headerLeft: () => (
                         <HeaderBackButton
