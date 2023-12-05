@@ -163,11 +163,11 @@ export default function CadastroLancamentos({route, navigation}) {
       descricao: descricao,
     }
     modifyNode(novosDados)
-  }
+  };
 
   const onDeletePress = () => {
     deleteNode(params.item)
-  }
+  };
 
   const onCancelPress = () => {
     navigation.navigate('Home');

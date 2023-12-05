@@ -54,7 +54,7 @@ function Tabs({ navigation }) {
                     tabBarStyle: { display: 'none'},
                     tabBarLabel: '',
                     tabBarIcon: ({ size, color }) => (
-                        <BotaoLancamento size={size} color={color}/>
+                        <BotaoLancamento size={size} color={color} />
                     )
                 }}
             />
