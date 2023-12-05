@@ -74,8 +74,8 @@ export default function CadastroLancamentos({route, navigation}) {
                   nodeRef.child(key).remove();
                 });
   
-                Alert.alert('Lancamento deletado com sucesso!')
-                console.log('Lancamento deletado com sucesso!');
+                Alert.alert('', 'Lancamento deletado com sucesso!')
+                console.log('', 'Lancamento deletado com sucesso!');
                 navigation.navigate('VerLancamentos');
               },
             },
@@ -118,8 +118,8 @@ export default function CadastroLancamentos({route, navigation}) {
           nodeRef.child(key).set(newItem);
         });
 
-        Alert.alert('Lancamento modificado com sucesso!')
-        console.log('Lancamento modificado com sucesso!');
+        Alert.alert('', 'Lancamento modificado com sucesso!')
+        console.log('', 'Lancamento modificado com sucesso!');
         navigation.navigate('VerLancamentos');
       }
     } catch (error) {
@@ -171,7 +171,11 @@ export default function CadastroLancamentos({route, navigation}) {
   }
 
   const onCancelPress = () => {
-    navigation.navigate('Principal');
+    if(isExistente){
+      navigation.navigate('VerLancamentos')
+    }else{
+      navigation.navigate('Principal');
+    }
   };
 
   return (

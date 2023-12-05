@@ -4,11 +4,14 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { firebase, auth } from '../../firebase/config.js';
 import styles from './estilo'
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen(props) {
     const [user, setUser] = useState(null);
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
+
+    const navigation = props.navigation;
+    const loggedUser = props.loggedUser;
 
     const handleMenuPress = () => {
         setIsModalVisible(true);
@@ -34,6 +37,10 @@ export default function HomeScreen({navigation}) {
     }
 
     useEffect(() => {
+        if(loggedUser){
+            setUser(loggedUser)
+        }
+
         auth.onAuthStateChanged(function(user){
             setUser(user)
         })
